@@ -20,3 +20,5 @@ Console.WriteLine(@$"What game would you like to play today? Choose from the opt
 3. Refaktorisanje znaci promena koda tako da se ne utice na sam rad programa, odnosno program radi isto kao i ranije. 
 
 ------------------------------------------------------------------------------------------------------   
+
+4.  Console.Clear() // brise sve sa prozora konzole
