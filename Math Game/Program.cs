@@ -27,45 +27,52 @@ internal class Program
         Console.WriteLine("------------------------------------------------------------");
         Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself\n");
 
-        Console.WriteLine(@$"What game would you like to play today? Choose from the options below: 
+        bool isGameOn = true;
+        
+        do
+        {
+            Console.WriteLine(@$"What game would you like to play today? Choose from the options below: 
         A - Addition
         S - Subtraction
         M - Multiplication
         D - Divison    
         Q - Quit the program
         ");
-        Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------");
 
-        string gameSelected = Console.ReadLine();
+            string gameSelected = Console.ReadLine();
 
-        /* CHOOSING A RIGHT GAME */
-        switch (gameSelected.Trim().ToLower())
-        {
-            case "a":
-                AdditionGame("Addition game");
-                break;
+            /* CHOOSING A RIGHT GAME */
+            switch (gameSelected.Trim().ToLower())
+            {
+                case "a":
+                    AdditionGame("Addition game");
+                    break;
 
-            case "s":
-                SubtractionGame("Subtraction game");
-                break;
+                case "s":
+                    SubtractionGame("Subtraction game");
+                    break;
 
-            case "m":
-                MultiplicationGame("Multiplication game");
-                break;
+                case "m":
+                    MultiplicationGame("Multiplication game");
+                    break;
 
-            case "d":
-                DivisionGame("Division game");
-                break;
+                case "d":
+                    DivisionGame("Division game");
+                    break;
 
-            case "q":
-                ExitGame("Goodbye");
-                break;
+                case "q":
+                    isGameOn = false;
+                    ExitGame("Thankk you for playing Math game.");
+                    break;
 
-            default:
-                Console.WriteLine("Invalid input");
-                Environment.Exit(1);
-                break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    Environment.Exit(1);
+                    break;
+            }
         }
+        while (isGameOn == true);
     }
 
     static void AdditionGame(string message)
@@ -81,10 +88,12 @@ internal class Program
 
         for (int i = 0; i < 5; i++)
         {
+            
+
             firstNumber = random.Next(1, 10); // 1 <= broj < 10
             secondNumber = random.Next(1, 10);
 
-            Console.WriteLine($"\n{i+1}. example: {firstNumber} + {secondNumber}");
+            Console.WriteLine($"{i+1}. example: {firstNumber} + {secondNumber}");
             Console.Write("Your answer: ");
             var result = Console.ReadLine();
 
@@ -100,9 +109,11 @@ internal class Program
                 Console.WriteLine("Your answer is incorrect! Type any key to continue");
                 Console.ReadLine();
             }
+            Console.Clear();
         }
 
-        Console.WriteLine($"\nYour score is: {score}");
+        Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+        Console.ReadKey();
     }
 
     static void SubtractionGame(string message)
@@ -137,9 +148,10 @@ internal class Program
                 Console.WriteLine("Your answer is incorrect! Type any key to continue");
                 Console.ReadKey();
             }
+            Console.Clear();
         }
-            Console.WriteLine($"\nYour score is: {score}");
-        
+            Console.WriteLine($"\nYour score is: {score}\nPress any key to go back to main menu.");
+        Console.ReadKey();
     }
 
     static void MultiplicationGame(string message)
@@ -174,9 +186,10 @@ internal class Program
                 Console.WriteLine("Your answer is incorrect! Type any key to continue");
                 Console.ReadLine();
             }
+            Console.Clear();
         }
-            Console.WriteLine($"\nYour score is: {score}");
-        
+            Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+            Console.ReadKey();
     }
 
     static void DivisionGame(string message)
@@ -205,9 +218,10 @@ internal class Program
                 Console.WriteLine("Your answer is incorrect! Type any key to continue");
                 Console.ReadLine();
             }
-
+            Console.Clear();
         }
-        Console.WriteLine($"\nYour score is: {score}");
+        Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+        Console.ReadKey();
     }
 
 
