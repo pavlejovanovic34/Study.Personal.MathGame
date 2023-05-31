@@ -8,6 +8,11 @@
 
         DateTime date = DateTime.Now; // datum i vreme pocetka igre
 
+        MainMenu(name, date);
+    }
+
+    static void MainMenu(string name, DateTime date)
+    {
         /* GREETING AND MAIN MENU */
         Console.WriteLine("------------------------------------------------------------");
         Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself\n");
@@ -23,34 +28,32 @@
 
         string gameSelected = Console.ReadLine();
 
-        if (gameSelected.Trim().ToLower() == "a")
+        /* CHOOSING A RIGHT GAME */
+        switch (gameSelected.Trim().ToLower())
         {
-            AdditionGame("Addition game selected");
-        }
+            case "a":
+                AdditionGame("Addition game selected");
+                break;
 
-        else if (gameSelected.Trim().ToLower() == "s")
-        {
-            SubtractionGame("Subtraction game selected");
-        }
+            case "s":
+                SubtractionGame("Subtraction game selected");
+                break;
 
-        else if (gameSelected.Trim().ToLower() == "m")
-        {
-            MultiplicationGame("Multiplication game selected");
-        }
+            case "m":
+                MultiplicationGame("Multiplication game selected");
+                break;
 
-        else if (gameSelected.Trim().ToLower() == "d")
-        {
-            DivisionGame("Division game selected");
-        }
+            case "d":
+                DivisionGame("Division game selected");
+                break;
 
-        else if (gameSelected.Trim().ToLower() == "q")
-        {
-            ExitGame("Goodbye");
-        }
+            case "q":
+                ExitGame("Goodbye");
+                break;
 
-        else
-        {
-            Console.WriteLine("Invalid input");
+            default:
+                Console.WriteLine("Invalid input");
+                break;
         }
     }
 
