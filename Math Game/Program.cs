@@ -63,12 +63,11 @@ internal class Program
 
                 case "q":
                     isGameOn = false;
-                    ExitGame("Thankk you for playing Math game.");
+                    Console.WriteLine("Thank you for playing Math game.");
                     break;
 
                 default:
-                    Console.WriteLine("Invalid input");
-                    Environment.Exit(1);
+                    Console.WriteLine("Invalid input")
                     break;
             }
         }
@@ -112,7 +111,7 @@ internal class Program
             Console.Clear();
         }
 
-        Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+        Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
 
@@ -132,7 +131,7 @@ internal class Program
             firstNumber = random.Next(1, 10); // 1 <= broj < 10
             secondNumber = random.Next(1, 10);
 
-            Console.WriteLine($"\n{i + 1}. example: {firstNumber} - {secondNumber}");
+            Console.WriteLine($"{i + 1}. example: {firstNumber} - {secondNumber}");
             Console.Write("Your answer: ");
             var result = Console.ReadLine();
 
@@ -150,8 +149,8 @@ internal class Program
             }
             Console.Clear();
         }
-            Console.WriteLine($"\nYour score is: {score}\nPress any key to go back to main menu.");
-        Console.ReadKey();
+            Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
+            Console.ReadKey();
     }
 
     static void MultiplicationGame(string message)
@@ -170,7 +169,7 @@ internal class Program
             firstNumber = random.Next(1, 10); // 1 <= broj < 10
             secondNumber = random.Next(1, 10);
 
-            Console.WriteLine($"\n{i + 1}. example: {firstNumber} * {secondNumber}");
+            Console.WriteLine($"{i + 1}. example: {firstNumber} * {secondNumber}");
             Console.Write("Your answer: ");
             var result = Console.ReadLine();
 
@@ -188,7 +187,7 @@ internal class Program
             }
             Console.Clear();
         }
-            Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+            Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
     }
 
@@ -202,7 +201,7 @@ internal class Program
         for(int i = 0; i < 5; i++) 
         {
             var divisionNumbers = GetDivisionNumbers();
-            Console.WriteLine($"\n{i + 1}. example: {divisionNumbers[0]} / {divisionNumbers[1]}");
+            Console.WriteLine($"{i + 1}. example: {divisionNumbers[0]} / {divisionNumbers[1]}");
             Console.Write("Your answer: ");
             var result = Console.ReadLine();
 
@@ -220,7 +219,7 @@ internal class Program
             }
             Console.Clear();
         }
-        Console.WriteLine($"\nYour final score is: {score}\nPress any key to go back to main menu.");
+        Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
 
@@ -239,9 +238,5 @@ internal class Program
 
         return new int[2] { firstNmber, secondNmber };
     }
-    static void ExitGame(string message)
-    {
-        Console.WriteLine(message);
-        Environment.Exit(1); // Prekida rad programa i salje exit code(1) sto znaci da je korisnik sam izabrao da ugasi program
-    }
+  
 }
