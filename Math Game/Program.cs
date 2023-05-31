@@ -42,19 +42,19 @@ internal class Program
         switch (gameSelected.Trim().ToLower())
         {
             case "a":
-                AdditionGame("Addition game selected");
+                AdditionGame("Addition game");
                 break;
 
             case "s":
-                SubtractionGame("Subtraction game selected");
+                SubtractionGame("Subtraction game");
                 break;
 
             case "m":
-                MultiplicationGame("Multiplication game selected");
+                MultiplicationGame("Multiplication game");
                 break;
 
             case "d":
-                DivisionGame("Division game selected\nAnswer with only 2 decimals will be accepted!");
+                DivisionGame("Division game");
                 break;
 
             case "q":
@@ -63,12 +63,14 @@ internal class Program
 
             default:
                 Console.WriteLine("Invalid input");
+                Environment.Exit(1);
                 break;
         }
     }
 
     static void AdditionGame(string message)
     {
+        Console.Clear(); // clear the console window
         Console.WriteLine(message);
 
         Random random = new Random();
@@ -88,13 +90,15 @@ internal class Program
 
             if (int.Parse(result) == firstNumber + secondNumber)
             {
-                Console.WriteLine("Your answer is correct!");
+                Console.WriteLine("Your answer is correct! Type any key to continue");
                 score++;
+                Console.ReadLine();
             }
 
             else
             {
-                Console.WriteLine("Your answer is incorrect!");
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadLine();
             }
         }
 
@@ -103,6 +107,7 @@ internal class Program
 
     static void SubtractionGame(string message)
     {
+        Console.Clear();
         Console.WriteLine(message);
 
         Random random = new Random();
@@ -122,13 +127,15 @@ internal class Program
 
             if (int.Parse(result) == firstNumber - secondNumber)
             {
-                Console.WriteLine("Your answer is correct!");
+                Console.WriteLine("Your answer is correct! Type any key to continue");
                 score++;
+                Console.ReadKey();
             }
 
             else
             {
-                Console.WriteLine("Your answer is incorrect!");
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadKey();
             }
         }
             Console.WriteLine($"\nYour score is: {score}");
@@ -137,6 +144,7 @@ internal class Program
 
     static void MultiplicationGame(string message)
     {
+        Console.Clear();
         Console.WriteLine(message);
 
         Random random = new Random();
@@ -156,13 +164,15 @@ internal class Program
 
             if (int.Parse(result) == firstNumber * secondNumber)
             {
-                Console.WriteLine("Your answer is correct!");
+                Console.WriteLine("Your answer is correct! Type any key to continue");
                 score++;
+                Console.ReadLine();
             }
 
             else
             {
-                Console.WriteLine("Your answer is incorrect!");
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadLine();
             }
         }
             Console.WriteLine($"\nYour score is: {score}");
@@ -171,6 +181,9 @@ internal class Program
 
     static void DivisionGame(string message)
     {
+        Console.Clear();
+        Console.WriteLine(message);
+
         int score = 0;
 
         for(int i = 0; i < 5; i++) 
@@ -182,13 +195,15 @@ internal class Program
 
             if (int.Parse(result) == divisionNumbers[0] / divisionNumbers[1])
             {
-                Console.WriteLine("Your answer is correct!");
+                Console.WriteLine("Your answer is correct! Type any key to continue");
                 score++;
+                Console.ReadLine();
             }
 
             else
             {
-                Console.WriteLine("Your answer is incorrect!");
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadLine();
             }
 
         }
