@@ -1,0 +1,22 @@
+Nove stvari naucene u ovom projektu:
+
+1. Stampanje string literala u vise redova: 
+
+Console.WriteLine(@$"What game would you like to play today? Choose from the options below: 
+        A - Addition
+        S - Subtraction
+        M - Multiplication
+        D - Divison    
+        Q - Quit the program
+        ");
+------------------------------------------------------------------------------------------------------   
+
+2. Izlazak, odnosno prekid rada konzole na zahtev korisnika:
+
+    Environment.Exit(1); // Prekida rad programa i salje exit code(1) sto znaci da je korisnik sam izabrao da ugasi program
+
+------------------------------------------------------------------------------------------------------   
+  
+3. Refaktorisanje znaci promena koda tako da se ne utice na sam rad programa, odnosno program radi isto kao i ranije. 
+
+------------------------------------------------------------------------------------------------------   
