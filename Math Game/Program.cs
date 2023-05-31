@@ -2,13 +2,21 @@
 {
     private static void Main()
     {
-        /*  PLAYERS DETAILS  */
-        Console.WriteLine("Please type your name:");
-        string name = Console.ReadLine();
+      
 
         DateTime date = DateTime.Now; // datum i vreme pocetka igre
 
+        string name = GetName(); 
+
+        
+
         MainMenu(name, date);
+    }
+
+     static string GetName()   /*  PLAYERS DETAILS  */
+    {
+        Console.WriteLine("Please type your name:");
+        return Console.ReadLine();
     }
 
     static void MainMenu(string name, DateTime date)
@@ -63,7 +71,7 @@
     }
 
     static void SubtractionGame(string message)
-    {
+    { 
         Console.WriteLine(message);
     }
 
