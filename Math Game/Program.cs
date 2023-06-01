@@ -75,8 +75,7 @@ internal class Program
                     Console.WriteLine("Invalid input");
                     break;
             }
-
-           
+ 
 
         }
         while (isGameOn == true);
@@ -119,7 +118,7 @@ internal class Program
             Console.Clear();
         }
 
-        games.Add($"{DateTime.Now} - Addition: Score = {score}");
+        AddToHistory(score, "Addition");
         Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
@@ -159,9 +158,9 @@ internal class Program
             Console.Clear();
         }
 
-            games.Add($"{DateTime.Now} - Subtraction: Score = {score}");
-            Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
-            Console.ReadKey();
+        AddToHistory(score, "Subtraction");
+        Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
+        Console.ReadKey();
     }
 
     static void MultiplicationGame(string message)
@@ -199,9 +198,9 @@ internal class Program
             Console.Clear();
         }
 
-            games.Add($"{DateTime.Now} -  Multiplication: Score = {score}");
-            Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
-            Console.ReadKey();
+        AddToHistory(score, "Multiplication");
+        Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
+        Console.ReadKey();
     }
 
     static void DivisionGame(string message)
@@ -233,7 +232,7 @@ internal class Program
             Console.Clear();
         }
 
-        games.Add($"{DateTime.Now} - Divison: Score = {score}");
+        AddToHistory(score, "Division");
         Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
@@ -275,6 +274,11 @@ internal class Program
         Console.WriteLine("---------------------------------\n");
         Console.WriteLine("Press any key to get back to main menu.");
         Console.ReadKey(); 
+    }
+
+    static void AddToHistory(int gameScore, string gameType)
+    {
+        games.Add($"{DateTime.Now} - {gameType}: Score = {gameScore}");
     }
   
 }
