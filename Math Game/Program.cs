@@ -2,26 +2,24 @@
 
 internal class Program
 {
+    private static DateTime date = DateTime.Now; // datum i vreme pocetka igre
+
+    private static List<string> games = new List<string>(); // keeps history of games being played
     private static void Main()
     {
-      
+        string name = GetName();
 
-        DateTime date = DateTime.Now; // datum i vreme pocetka igre
-
-        string name = GetName(); 
-
-        
-
-        MainMenu(name, date);
+        MainMenu(name);
     }
 
+    
     static string GetName()   /*  PLAYERS DETAILS  */
     {
         Console.WriteLine("Please type your name:");
         return Console.ReadLine();
     }
 
-    static void MainMenu(string name, DateTime date)
+    static void MainMenu(string name)
     {
         /* GREETING AND MAIN MENU */
         Console.WriteLine("------------------------------------------------------------");
@@ -67,7 +65,7 @@ internal class Program
                     break;
 
                 default:
-                    Console.WriteLine("Invalid input")
+                    Console.WriteLine("Invalid input");
                     break;
             }
         }
@@ -111,6 +109,7 @@ internal class Program
             Console.Clear();
         }
 
+        games.Add($"{DateTime.Now} - Addition: Score = {score}");
         Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
