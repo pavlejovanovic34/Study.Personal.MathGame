@@ -51,9 +51,7 @@
                         engine.DivisionGame("Division game");
                         break;
 
-                    case "q":
-                        Console.Clear();
-                        Console.WriteLine("Thank you for playing Math game.");
+                    case "q":   
                         isGameOn = false;
                         break;
 
@@ -61,10 +59,13 @@
                         Console.WriteLine("Invalid input");
                         break;
                 }
+                Console.Clear();
 
-
-            }
+            } 
             while (isGameOn == true);
+
+            Console.Clear();
+            Console.WriteLine("Thank you for playing Math game.");
         }
     }
 }

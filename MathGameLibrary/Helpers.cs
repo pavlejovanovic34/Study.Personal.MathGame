@@ -1,4 +1,6 @@
-﻿namespace MathGameLibrary
+﻿
+
+namespace MathGameLibrary
 {
     internal class Helpers
     {

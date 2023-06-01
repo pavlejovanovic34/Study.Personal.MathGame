@@ -1,6 +1,5 @@
-﻿using System.Xml.Linq;
-using static System.Formats.Asn1.AsnWriter;
-using MathGameLibrary;
+﻿using MathGameLibrary;
+
 
 internal class Program
 {
@@ -12,6 +11,8 @@ internal class Program
        Menu menu = new Menu();
        
        menu.MainMenu(name);   
+
+        
     }
 
     static string GetName()   /*  PLAYERS DETAILS  */
