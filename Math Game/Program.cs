@@ -1,4 +1,5 @@
-﻿using static System.Formats.Asn1.AsnWriter;
+﻿using System.Xml.Linq;
+using static System.Formats.Asn1.AsnWriter;
 
 internal class Program
 {
@@ -30,6 +31,7 @@ internal class Program
         do
         {
             Console.WriteLine(@$"What game would you like to play today? Choose from the options below: 
+        V - View Previous Games
         A - Addition
         S - Subtraction
         M - Multiplication
@@ -40,9 +42,14 @@ internal class Program
 
             string gameSelected = Console.ReadLine();
 
+           
             /* CHOOSING A RIGHT GAME */
             switch (gameSelected.Trim().ToLower())
             {
+                case "v":
+                    GetGames();
+                    break;
+
                 case "a":
                     AdditionGame("Addition game");
                     break;
@@ -60,14 +67,17 @@ internal class Program
                     break;
 
                 case "q":
-                    isGameOn = false;
                     Console.WriteLine("Thank you for playing Math game.");
+                    isGameOn = false;
                     break;
 
                 default:
                     Console.WriteLine("Invalid input");
                     break;
             }
+
+           
+
         }
         while (isGameOn == true);
     }
@@ -148,6 +158,8 @@ internal class Program
             }
             Console.Clear();
         }
+
+            games.Add($"{DateTime.Now} - Subtraction: Score = {score}");
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
     }
@@ -186,6 +198,8 @@ internal class Program
             }
             Console.Clear();
         }
+
+            games.Add($"{DateTime.Now} -  Multiplication: Score = {score}");
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
     }
@@ -218,10 +232,11 @@ internal class Program
             }
             Console.Clear();
         }
+
+        games.Add($"{DateTime.Now} - Divison: Score = {score}");
         Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
         Console.ReadKey();
     }
-
 
     static int[] GetDivisionNumbers()
     {
@@ -236,6 +251,30 @@ internal class Program
         }
 
         return new int[2] { firstNmber, secondNmber };
+    }
+
+    static void GetGames()
+    {
+        Console.Clear();
+        Console.WriteLine("Games history");
+        Console.WriteLine("---------------------------------");
+
+        if (games.Count == 0)
+        {
+            Console.WriteLine("You haven't played any game yet!");
+        }
+
+        else
+        {
+            foreach (string game in games)
+            {
+                Console.WriteLine($"{game}");
+            }
+        }
+       
+        Console.WriteLine("---------------------------------\n");
+        Console.WriteLine("Press any key to get back to main menu.");
+        Console.ReadKey(); 
     }
   
 }
