@@ -12,7 +12,7 @@
             Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself");
             Console.WriteLine("Press any key to show menu");
             Console.ReadKey();
-            Console.WriteLine("\n");
+            Console.Clear();
 
 
             bool isGameOn = true;
@@ -33,7 +33,7 @@
 
                 while(string.IsNullOrEmpty(gameSelected))
                 {
-                    Console.WriteLine("Your need to choose some of the games. Please try again.");
+                    Console.WriteLine("Your need to choose some of the options in the menu. Please try again.");
                     gameSelected = Console.ReadLine();
                 }
 

@@ -39,7 +39,7 @@ namespace MathGameLibrary
 
             else
             {
-                foreach (Game game in gamesToPrint)
+                foreach (Game game in games)
                 {
                     Console.WriteLine($"{game.Date} - {game.Type}: Score = {game.Score}pts");
                 }
