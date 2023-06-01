@@ -26,6 +26,9 @@ namespace MathGameLibrary
                 Console.Write("Your answer: ");
                 var result = Console.ReadLine();
 
+                // validation
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber + secondNumber)
                 {
                     Console.WriteLine("Your answer is correct! Type any key to continue");
@@ -65,6 +68,9 @@ namespace MathGameLibrary
                 Console.WriteLine($"{i + 1}. example: {firstNumber} - {secondNumber}");
                 Console.Write("Your answer: ");
                 var result = Console.ReadLine();
+
+                // validation
+                result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == firstNumber - secondNumber)
                 {
@@ -106,6 +112,9 @@ namespace MathGameLibrary
                 Console.Write("Your answer: ");
                 var result = Console.ReadLine();
 
+                // validation
+                result = Helpers.ValidateResult(result);
+
                 if (int.Parse(result) == firstNumber * secondNumber)
                 {
                     Console.WriteLine("Your answer is correct! Type any key to continue");
@@ -139,6 +148,9 @@ namespace MathGameLibrary
                 Console.WriteLine($"{i + 1}. example: {divisionNumbers[0]} / {divisionNumbers[1]}");
                 Console.Write("Your answer: ");
                 var result = Console.ReadLine();
+
+                // validation
+                result = Helpers.ValidateResult(result);
 
                 if (int.Parse(result) == divisionNumbers[0] / divisionNumbers[1])
                 {

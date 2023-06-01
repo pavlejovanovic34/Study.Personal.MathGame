@@ -8,8 +8,12 @@
         public void MainMenu(string name)
         {
             /* GREETING AND MAIN MENU */
-            Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself\n");
+            Console.Clear();
+            Console.WriteLine($"Hello {name.ToUpper()}. It's {date.DayOfWeek}. This is your math's game. That's great that you're working on improving yourself");
+            Console.WriteLine("Press any key to show menu");
+            Console.ReadKey();
+            Console.WriteLine("\n");
+
 
             bool isGameOn = true;
 
@@ -27,6 +31,11 @@
 
                 string gameSelected = Console.ReadLine();
 
+                while(string.IsNullOrEmpty(gameSelected))
+                {
+                    Console.WriteLine("Your need to choose some of the games. Please try again.");
+                    gameSelected = Console.ReadLine();
+                }
 
                 /* CHOOSING A RIGHT GAME */
                 switch (gameSelected.Trim().ToLower())

@@ -6,7 +6,7 @@ internal class Program
    
     private static void Main()
     {
-        string name = GetName();
+        string name = Helpers.GetName();
 
        Menu menu = new Menu();
        
@@ -15,9 +15,5 @@ internal class Program
         
     }
 
-    static string GetName()   /*  PLAYERS DETAILS  */
-    {
-        Console.WriteLine("Please type your name:");
-        return Console.ReadLine();
-    }
+    
 }
