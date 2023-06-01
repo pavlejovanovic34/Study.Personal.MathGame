@@ -22,3 +22,29 @@ Console.WriteLine(@$"What game would you like to play today? Choose from the opt
 ------------------------------------------------------------------------------------------------------   
 
 4.  Console.Clear() // brise sve sa prozora konzole
+
+------------------------------------------------------------------------------------------------------
+
+5. Helper klase su klase koje sadrze metode koje se ponavljaju na vise razlicitih mesta u kodu.
+
+------------------------------------------------------------------------------------------------------
+
+6. MVC - Model View Controller
+
+        Model => klasa koja predstavlja "oblik" podataka
+        View => korisnicki interfejs
+        Controller => klasa koja omogucava komunikaciju izmedju view i model klase.
+        
+------------------------------------------------------------------------------------------------------
+
+7.  Proverava da li je uneta null vrednost ili vrednost koja ne moze da se konvertuje u integer, _ stoji tu jer ne moramo da sacuvamo rezultat rada TryParse() metode tako da ona menja promenljivu.
+                
+                while(string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
+                {
+                    Console.WriteLine("Your input must ne an integer. Try again.");
+                    result = Console.ReadLine();
+                }
+
+------------------------------------------------------------------------------------------------------
+
+8.
