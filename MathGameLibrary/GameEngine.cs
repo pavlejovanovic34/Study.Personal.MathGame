@@ -1,4 +1,5 @@
-﻿namespace MathGameLibrary
+﻿using MathGameLibrary.Models;
+namespace MathGameLibrary
 {
     internal class GameEngine
     {
@@ -40,7 +41,7 @@
                 Console.Clear();
             }
 
-            Helpers.AddToHistory(score, "Addition");
+            Helpers.AddToHistory(score, GameType.Addition);
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
         }
@@ -80,7 +81,7 @@
                 Console.Clear();
             }
 
-            Helpers.AddToHistory(score, "Subtraction");
+            Helpers.AddToHistory(score, GameType.Subtraction);
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
         }
@@ -120,7 +121,7 @@
                 Console.Clear();
             }
 
-            Helpers.AddToHistory(score, "Multiplication");
+            Helpers.AddToHistory(score, GameType.Multiplication);
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
         }
@@ -154,7 +155,7 @@
                 Console.Clear();
             }
 
-            Helpers.AddToHistory(score, "Division");
+            Helpers.AddToHistory(score, GameType.Division);
             Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
             Console.ReadKey();
         }

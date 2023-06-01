@@ -1,11 +1,11 @@
-﻿
+﻿using MathGameLibrary.Models;
 
 namespace MathGameLibrary
 {
     internal class Helpers
     {
-        private static readonly List<string> games = new List<string>(); // keeps history of games being played
-        internal static void GetGames()
+        private static readonly List<Game> games = new List<Game>(); // keeps history of games being played
+        internal static void PrintGames()
         {
             Console.Clear();
             Console.WriteLine("Games history");
@@ -18,9 +18,9 @@ namespace MathGameLibrary
 
             else
             {
-                foreach (string game in games)
+                foreach (Game game in games)
                 {
-                    Console.WriteLine($"{game}");
+                    Console.WriteLine($"{game.Date} - {game.Type}: Score = {game.Score}pts");
                 }
             }
 
@@ -29,9 +29,14 @@ namespace MathGameLibrary
             Console.ReadKey();
         }
 
-        internal static void AddToHistory(int gameScore, string gameType)
+        internal static void AddToHistory(int gameScore, GameType gameType)
         {
-            games.Add($"{DateTime.Now} - {gameType}: Score = {gameScore}");
+            games.Add(new Game 
+            {
+                Date = DateTime.Now,
+                Score = gameScore,
+                Type = gameType
+            });
         }
 
         internal static int[] GetDivisionNumbers()
