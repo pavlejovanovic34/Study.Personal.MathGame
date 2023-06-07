@@ -8,6 +8,7 @@
 
         internal GameType Type { get; set; }
 
+        internal string Difficulty { get; set; }
 
     }
 

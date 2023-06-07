@@ -41,7 +41,7 @@ namespace MathGameLibrary
             {
                 foreach (Game game in games)
                 {
-                    Console.WriteLine($"{game.Date} - {game.Type}: Score = {game.Score}pts");
+                    Console.WriteLine($"{game.Date} - {game.Type}: Game Difficulty = {game.Difficulty} Score = {game.Score}pts");
                 }
             }
 
@@ -50,13 +50,14 @@ namespace MathGameLibrary
             Console.ReadKey();
         }
 
-        internal static void AddToHistory(int gameScore, GameType gameType)
+        internal static void AddToHistory(int gameScore, GameType gameType, string difficulty)
         {
             games.Add(new Game 
             {
                 Date = DateTime.Now,
                 Score = gameScore,
-                Type = gameType
+                Type = gameType,
+                Difficulty = difficulty
             });
         }
 
@@ -79,7 +80,21 @@ namespace MathGameLibrary
         {
             while (string.IsNullOrEmpty(result) || !Int32.TryParse(result, out _))
             {
-                Console.WriteLine("Your input must ne an integer. Try again.");
+                Console.Clear();
+                Console.WriteLine("Your input must be an integer. Try again.");
+                Console.Write("Your answer: ");
+                result = Console.ReadLine();
+            }
+
+            return result;
+        }
+
+        internal static string? ValidateDivisonResult(string result)
+        {
+            while (string.IsNullOrEmpty(result) || !Double.TryParse(result, out _))
+            {
+                Console.Clear();
+                Console.WriteLine("Your input must be an integer. Try again.");
                 Console.Write("Your answer: ");
                 result = Console.ReadLine();
             }
@@ -99,6 +114,23 @@ namespace MathGameLibrary
             }
 
             return name;
+        }
+
+        internal static void ValidateDifficultyLevelInput(int[] numbers)
+        {
+            if(numbers == null)
+            {
+                Console.WriteLine("Invalid input. Please try again!");
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+
+                Console.Clear();
+
+
+                string name = Helpers.GetName();
+                Menu menu = new Menu();
+                menu.MainMenu(name);
+            }
         }
     }
 }

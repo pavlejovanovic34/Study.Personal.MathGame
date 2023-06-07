@@ -76,5 +76,63 @@
             Console.Clear();
             Console.WriteLine("Thank you for playing Math game.");
         }
+
+        internal static int[] LevelMenu(int numOfQuestions, out string difficulty)
+        {
+            Console.Clear();
+
+            int[] numbers = new int[numOfQuestions * 2];
+
+            Console.WriteLine(@$"Please select difficulty of the game: Choose from the options below: 
+        E - Easy level
+        M - Intermediate level
+        H - Hard level
+        ");
+
+            difficulty = null;
+
+            string gameLevel = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(gameLevel))
+            {
+                Console.WriteLine("Your need to choose some of the options in the menu. Please try again.");
+                Console.Write("Your choice: ");
+                gameLevel = Console.ReadLine();
+            }
+
+            bool emptyNumbers = false; 
+
+            switch(gameLevel.Trim().ToLower()) 
+            {
+                case "e":
+                    numbers = LevelOfDificulty.Easy(numOfQuestions);
+                    difficulty = "Easy";
+                    break;
+
+                case "m":
+                    numbers = LevelOfDificulty.Medium(numOfQuestions);
+                    difficulty = "Medium";
+                    break;
+
+                case "h":
+                    numbers = LevelOfDificulty.Hard(numOfQuestions);
+                    difficulty = "Hard";
+                    break;
+
+                default:
+                    emptyNumbers = true;                    
+                    break;
+            }
+
+            if(emptyNumbers == false)
+            {
+                return numbers;
+            }
+
+            else
+            {
+                return null;
+            }
+        }
     }
 }
