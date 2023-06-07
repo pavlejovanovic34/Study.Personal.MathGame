@@ -105,3 +105,11 @@ Remember to add the necessary using directive at the top of your file:
 using System.Diagnostics;
 
 This example assumes a simple game structure, and you can incorporate the timing functionality into your specific game logic.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+9.  In C#, the TimeSpan struct is used to represent a duration of time or a time interval. It allows you to perform various operations on time values, such as addition, subtraction, comparison, and formatting.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
