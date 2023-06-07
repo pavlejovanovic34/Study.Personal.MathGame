@@ -47,4 +47,61 @@ Console.WriteLine(@$"What game would you like to play today? Choose from the opt
 
 ------------------------------------------------------------------------------------------------------
 
-8.
+8. Deo koda koji racuna koliko je potrebno igracu da zavrsi jednu igru:
+
+To track how much time the user spent while finishing a game in C#, you can use the Stopwatch class from the System.Diagnostics namespace. 
+The Stopwatch class provides high-resolution timing functionality. 
+
+Here's an example of how you can use it:
+
+
+using System;
+using System.Diagnostics;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Welcome to the game!");
+        Console.WriteLine("Press Enter to start the game.");
+        Console.ReadLine();
+
+        // Create and start the stopwatch
+        Stopwatch stopwatch = Stopwatch.StartNew();
+
+        // Your game logic goes here...
+        PlayGame();
+
+        // Stop the stopwatch
+        stopwatch.Stop();
+
+        // Calculate and display the elapsed time
+        TimeSpan elapsedTime = stopwatch.Elapsed;
+        Console.WriteLine("Congratulations! You finished the game in: " + elapsedTime);
+
+        Console.WriteLine("Press Enter to exit.");
+        Console.ReadLine();
+    }
+
+    static void PlayGame()
+    {
+        // Game logic goes here...
+        Console.WriteLine("Playing the game...");
+        // Simulate some time delay
+        System.Threading.Thread.Sleep(3000);
+    }
+}
+
+
+Objasnjenje: 
+
+In this example, when the user presses Enter to start the game, the stopwatch is started using Stopwatch.StartNew(). 
+Then, your game logic is executed inside the PlayGame method. After the game is finished, the stopwatch is stopped using Stopwatch.Stop(). 
+The elapsed time is calculated using the Elapsed property of the Stopwatch class, which returns a TimeSpan object representing the elapsed time.
+
+Finally, the elapsed time is displayed to the user. You can format the output according to your preference by accessing individual properties of the TimeSpan object, such as TotalSeconds, TotalMinutes, or TotalHours.
+
+Remember to add the necessary using directive at the top of your file:
+using System.Diagnostics;
+
+This example assumes a simple game structure, and you can incorporate the timing functionality into your specific game logic.
