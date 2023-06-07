@@ -1,23 +1,21 @@
 ﻿using MathGameLibrary.Models;
+using System.Diagnostics;
+
 namespace MathGameLibrary
 {
     internal class GameEngine
     {
         
-        internal void AdditionGame(string message)
+       internal void AdditionGame(string message)
         {
             Console.Clear(); // clear the console window
             Console.WriteLine(message);
 
-            Console.WriteLine("Please select number of questions for the game: ");
-            string numOfQuestions = Console.ReadLine();
-            
-            numOfQuestions = Helpers.ValidateResult(numOfQuestions);
+            int numOfQuestions = Helpers.NumberOfQuestionsInput();
 
-
-            int[] numbers = Menu.LevelMenu(int.Parse(numOfQuestions), out string difficulty);
+            int[] numbers = Menu.LevelMenu(numOfQuestions, out string difficulty);
             
-            /* VALIDATION */
+            // VALIDATION 
             if (numbers == null)
             {
                 Helpers.ValidateDifficultyLevelInput(numbers);
@@ -28,33 +26,31 @@ namespace MathGameLibrary
                 int score = 0;
                 Console.Clear();
 
+                // starting to count time
+                Stopwatch stopwatch = Stopwatch.StartNew();
 
-                for (int i = 0; i < numbers.Length / 2; i += 2)
+                for (int i = 0; i < numbers.Length; i+=2)
                 {
 
-                    Console.WriteLine($"{i + 1}. example: {numbers[i]} + {numbers[i + 1]}");
+                    Console.WriteLine($"Example: {numbers[i]} + {numbers[i + 1]}");
                     Console.Write("Your answer: ");
                     var result = Console.ReadLine();
 
                     // validation
                     result = Helpers.ValidateResult(result);
 
-                    if (int.Parse(result) == numbers[i] + numbers[i + 1])
-                    {
-                        Console.WriteLine("Your answer is correct! Type any key to continue");
-                        score++;
-                        Console.ReadLine();
-                    }
+                    score += Helpers.CheckAnwer(numbers[i], numbers[i + 1], int.Parse(result), "+");
 
-                    else
-                    {
-                        Console.WriteLine("Your answer is incorrect! Type any key to continue");
-                        Console.ReadLine();
-                    }
                     Console.Clear();
                 }
 
-                Helpers.AddToHistory(score, GameType.Addition, difficulty);
+                // stopping the stopwatch
+                stopwatch.Stop();
+
+                // adding time that user spent to answer the questions of the game
+                TimeSpan elapsedTime = stopwatch.Elapsed;
+
+                Helpers.AddToHistory(score, GameType.Addition, difficulty, elapsedTime, numOfQuestions);
                 Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
                 Console.ReadKey();
             }
@@ -69,14 +65,11 @@ namespace MathGameLibrary
             Console.Clear();
             Console.WriteLine(message);
 
-            Console.WriteLine("Please select number of questions for the game: ");
-            string numOfQuestions = Console.ReadLine();
+            int numOfQuestions = Helpers.NumberOfQuestionsInput();
 
-            numOfQuestions = Helpers.ValidateResult(numOfQuestions);
-
-            int[] numbers = Menu.LevelMenu(int.Parse(numOfQuestions), out string difficulty);
+            int[] numbers = Menu.LevelMenu(numOfQuestions, out string difficulty);
             
-            /* VALIDATION */
+            // VALIDATION 
 
             if (numbers == null)
             {
@@ -89,34 +82,27 @@ namespace MathGameLibrary
 
                 int score = 0;
 
+                Stopwatch stopwatch = Stopwatch.StartNew();
 
-
-                for (int i = 0; i < numbers.Length / 2; i += 2)
+                for (int i = 0; i < numbers.Length; i+=2)
                 {
 
-                    Console.WriteLine($"{i + 1}. example: {numbers[i]} - {numbers[i + 1]}");
+                    Console.WriteLine($"Example: {numbers[i]} - {numbers[i + 1]}");
                     Console.Write("Your answer: ");
                     var result = Console.ReadLine();
 
                     // validation
                     result = Helpers.ValidateResult(result);
 
-                    if (int.Parse(result) == numbers[i] - numbers[i + 1])
-                    {
-                        Console.WriteLine("Your answer is correct! Type any key to continue");
-                        score++;
-                        Console.ReadLine();
-                    }
+                    score += Helpers.CheckAnwer(numbers[i], numbers[i + 1], int.Parse(result), "-");
 
-                    else
-                    {
-                        Console.WriteLine("Your answer is incorrect! Type any key to continue");
-                        Console.ReadLine();
-                    }
                     Console.Clear();
                 }
 
-                Helpers.AddToHistory(score, GameType.Subtraction, difficulty);
+                stopwatch.Stop();
+                TimeSpan elapsedTime = stopwatch.Elapsed;
+
+                Helpers.AddToHistory(score, GameType.Subtraction, difficulty, elapsedTime, numOfQuestions);
                 Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
                 Console.ReadKey();
             }
@@ -127,16 +113,11 @@ namespace MathGameLibrary
             Console.Clear();
             Console.WriteLine(message);
 
-            Console.WriteLine("Please select number of questions for the game: ");
-            string numOfQuestions = Console.ReadLine();
+            int numOfQuestions = Helpers.NumberOfQuestionsInput();
 
-            numOfQuestions = Helpers.ValidateResult(numOfQuestions);
+            int[] numbers = Menu.LevelMenu(numOfQuestions, out string difficulty);
 
-
-
-            int[] numbers = Menu.LevelMenu(int.Parse(numOfQuestions), out string difficulty);
-
-            /* VALIDATION */
+            // VALIDATION 
 
             if (numbers == null)
             {
@@ -149,57 +130,43 @@ namespace MathGameLibrary
 
                 Console.Clear();
 
+                Stopwatch stopwatch = Stopwatch.StartNew();
 
-                for (int i = 0; i < numbers.Length / 2; i += 2)
+                for (int i = 0; i < numbers.Length; i+=2)
                 {
 
-                    Console.WriteLine($"{i + 1}. example: {numbers[i]} * {numbers[i + 1]}");
+                    Console.WriteLine($"Example: {numbers[i]} * {numbers[i + 1]}");
                     Console.Write("Your answer: ");
-                    var result = Console.ReadLine();
+                   var result = Console.ReadLine();
 
                     // validation
                     result = Helpers.ValidateResult(result);
 
-                    if (int.Parse(result) == numbers[i] * numbers[i + 1])
-                    {
-                        Console.WriteLine("Your answer is correct! Type any key to continue");
-                        score++;
-                        Console.ReadLine();
-                    }
+                    score += Helpers.CheckAnwer(numbers[i], numbers[i + 1], int.Parse(result), "*");
 
-                    else
-                    {
-                        Console.WriteLine("Your answer is incorrect! Type any key to continue");
-                        Console.ReadLine();
-                    }
                     Console.Clear();
                 }
-                Console.Clear();
+                
+                stopwatch.Stop();
+                TimeSpan elapsedTime = stopwatch.Elapsed;
 
-
-                Helpers.AddToHistory(score, GameType.Multiplication, difficulty);
+                Helpers.AddToHistory(score, GameType.Multiplication, difficulty, elapsedTime, numOfQuestions);
                 Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
                 Console.ReadKey();
             }
             
         }
         
-
-
         internal void DivisionGame(string message)
         {
             Console.Clear();
             Console.WriteLine(message);
 
-            Console.WriteLine("Please select number of questions for the game: ");
-            string numOfQuestions = Console.ReadLine();
+            int numOfQuestions = Helpers.NumberOfQuestionsInput();
 
-            numOfQuestions = Helpers.ValidateResult(numOfQuestions);
+            int[] numbers = Menu.LevelMenu(numOfQuestions, out string difficulty);
 
-            
-            int[] numbers = Menu.LevelMenu(int.Parse(numOfQuestions), out string difficulty);
-
-            /* VALIDATION */
+            // VALIDATION 
 
             if (numbers == null)
             {
@@ -212,40 +179,67 @@ namespace MathGameLibrary
 
                 Console.Clear();
 
-                for (int i = 0; i < numbers.Length / 2; i++)
+                Stopwatch stopwatch = Stopwatch.StartNew();
+
+                for (int i = 0; i < numbers.Length; i+=2)
                 {
-                    //var divisionNumbers = Helpers.GetDivisionNumbers();
-                    Console.WriteLine($"{i + 1}. example: {numbers[i]} / {numbers[i + 1]}\nOnly results with 2 decimals will be accepted");
+                    
+                    Console.WriteLine($"Example: {numbers[i]} / {numbers[i + 1]}\nOnly results rounded up to 2 decimals will be accepted");
                     Console.Write("Your answer: ");
                     var result = Console.ReadLine();
 
                     // validation
                     result = Helpers.ValidateDivisonResult(result);
-                    
-                    double quotient = double.Parse(result);
-                    
-                    double correctAnswer = (double)numbers[i] / (double)numbers[i + 1];
 
-                    if (quotient == Math.Round(correctAnswer, 2))
-                    {
-                        Console.WriteLine("Your answer is correct! Type any key to continue");
-                        score++;
-                        Console.ReadLine();
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("Your answer is incorrect! Type any key to continue");
-                        Console.ReadLine();
-                    }
+                    score += Helpers.CheckDivisonAnswer(numbers[i], numbers[i + 1], double.Parse(result));
+                    
                     Console.Clear();
                 }
 
-                Helpers.AddToHistory(score, GameType.Division, difficulty);
+                stopwatch.Stop();
+                TimeSpan elapsedTime = stopwatch.Elapsed;
+
+                Helpers.AddToHistory(score, GameType.Division, difficulty, elapsedTime, numOfQuestions);
                 Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
                 Console.ReadKey();
             }
           
+        }
+
+
+        internal void RandomGame(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+
+            int[] numbers = Menu.LevelMenu(4, out string gameLevel);
+
+            int score = 0;
+            int i = 0;
+           
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
+            // calling each game type once
+            score += RandomGameGenerator.Addition(numbers[i], numbers[i + 1]);
+            i += 2;
+
+            score += RandomGameGenerator.Subtraction(numbers[i], numbers[i + 1]);
+            i += 2;
+
+            score += RandomGameGenerator.Multiplication(numbers[i], numbers[i + 1]);
+            i += 2;
+
+            score += RandomGameGenerator.Division(numbers[i], numbers[i + 1]);
+            i += 2;
+
+
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+
+            Helpers.AddToHistory(score, GameType.RandomGame, gameLevel , elapsedTime, 4);
+            Console.WriteLine($"Your final score is: {score}\nPress any key to go back to main menu.\n");
+            Console.ReadKey();
         }
     }
 }

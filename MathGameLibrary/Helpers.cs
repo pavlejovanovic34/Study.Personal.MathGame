@@ -1,27 +1,11 @@
 ﻿using MathGameLibrary.Models;
+using System.Net.Http.Headers;
 
 namespace MathGameLibrary
 {
     public class Helpers
     {
-        /*
-        private static readonly List<Game> games = new List<Game>
-        {
-            new Game { Date = DateTime.Now.AddDays(1), Type = GameType.Addition, Score = 5 },
-            new Game { Date = DateTime.Now.AddDays(2), Type = GameType.Multiplication, Score = 4 },
-            new Game { Date = DateTime.Now.AddDays(3), Type = GameType.Division, Score = 4 },
-            new Game { Date = DateTime.Now.AddDays(4), Type = GameType.Subtraction, Score = 3 },
-            new Game { Date = DateTime.Now.AddDays(5), Type = GameType.Addition, Score = 1 },
-            new Game { Date = DateTime.Now.AddDays(6), Type = GameType.Multiplication, Score = 2 },
-            new Game { Date = DateTime.Now.AddDays(7), Type = GameType.Division, Score = 3 },
-            new Game { Date = DateTime.Now.AddDays(8), Type = GameType.Subtraction, Score = 4 },
-            new Game { Date = DateTime.Now.AddDays(9), Type = GameType.Addition, Score = 4 },
-            new Game { Date = DateTime.Now.AddDays(10), Type = GameType.Multiplication, Score = 1 },
-            new Game { Date = DateTime.Now.AddDays(11), Type = GameType.Subtraction, Score = 0 },
-            new Game { Date = DateTime.Now.AddDays(12), Type = GameType.Division, Score = 2 },
-            new Game { Date = DateTime.Now.AddDays(13), Type = GameType.Subtraction, Score = 5 }
-        }; // keeps history of games being played -- predef games -- lorem ipsum --
-        */
+       
 
         private static readonly List<Game> games = new List<Game>();
         internal static void PrintGames()
@@ -41,7 +25,7 @@ namespace MathGameLibrary
             {
                 foreach (Game game in games)
                 {
-                    Console.WriteLine($"{game.Date} - {game.Type}: Game Difficulty = {game.Difficulty} Score = {game.Score}pts");
+                    Console.WriteLine($"{game.Date} - {game.Type}: Game Difficulty = {game.Difficulty}, Elapsed Time: {game.TimeElapesd.Seconds} seconds, Number of questions: {game.NumOfQuestions}, Score = {game.Score}pts");
                 }
             }
 
@@ -50,31 +34,19 @@ namespace MathGameLibrary
             Console.ReadKey();
         }
 
-        internal static void AddToHistory(int gameScore, GameType gameType, string difficulty)
+        internal static void AddToHistory(int gameScore, GameType gameType, string difficulty, TimeSpan elapsedTime, int numOfQuestions)
         {
             games.Add(new Game 
             {
                 Date = DateTime.Now,
                 Score = gameScore,
                 Type = gameType,
-                Difficulty = difficulty
+                Difficulty = difficulty,
+                TimeElapesd = elapsedTime,
+                NumOfQuestions = numOfQuestions
             });
         }
 
-        internal static int[] GetDivisionNumbers()
-        {
-            var random = new Random();
-            var firstNmber = random.Next(0, 99);
-            var secondNmber = random.Next(1, 99);
-
-            while (firstNmber % secondNmber != 0)
-            {
-                firstNmber = random.Next(0, 99);
-                secondNmber = random.Next(1, 99);
-            }
-
-            return new int[2] { firstNmber, secondNmber };
-        }
 
         internal static string? ValidateResult(string result)
         {
@@ -94,7 +66,7 @@ namespace MathGameLibrary
             while (string.IsNullOrEmpty(result) || !Double.TryParse(result, out _))
             {
                 Console.Clear();
-                Console.WriteLine("Your input must be an integer. Try again.");
+                Console.WriteLine("Your input must be a number. Try again.");
                 Console.Write("Your answer: ");
                 result = Console.ReadLine();
             }
@@ -132,5 +104,74 @@ namespace MathGameLibrary
                 menu.MainMenu(name);
             }
         }
+
+        internal static int NumberOfQuestionsInput()
+        {
+            Console.WriteLine("Please select number of questions for the game: ");
+            string numOfQuestions = Console.ReadLine();
+
+            numOfQuestions = Helpers.ValidateResult(numOfQuestions);
+
+            return int.Parse(numOfQuestions);
+        }
+
+        internal static int CheckAnwer(int operandOne,int operandTwo, int result, string operand)
+        {
+            int correctAnswer = 0;
+            int score = 0;
+
+            switch(operand.Trim().ToLower()) 
+            {
+                case "+":
+                    correctAnswer = operandOne + operandTwo;
+                    break;
+
+                case "-":
+                    correctAnswer = operandOne - operandTwo;
+                    break;
+                    
+                case "*":
+                    correctAnswer = operandOne * operandTwo; 
+                    break;
+            }
+
+            if(result == correctAnswer)
+            {
+                Console.WriteLine("Your answer is correct! Type any key to continue");
+                score++;
+                Console.ReadLine();
+            }
+            
+            else
+            {
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadLine();
+            }
+
+            return score;
+        }
+
+        internal static int CheckDivisonAnswer(int operandOne, int operandTwo, double result) 
+        {
+            double correctAnswer = (double)operandOne / (double)operandTwo;
+
+            int score = 0;
+
+            if(Math.Round(result,2) == correctAnswer)
+            {
+                Console.WriteLine("Your answer is correct! Type any key to continue");
+                score++;
+                Console.ReadLine();
+            }
+
+            else
+            {
+                Console.WriteLine("Your answer is incorrect! Type any key to continue");
+                Console.ReadLine();
+            }
+
+            return score;
+        }
+
     }
 }

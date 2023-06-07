@@ -24,7 +24,8 @@
         A - Addition
         S - Subtraction
         M - Multiplication
-        D - Divison    
+        D - Divison
+        R - Random game    
         Q - Quit the program
         ");
                 Console.WriteLine("------------------------------------------------------------");
@@ -58,6 +59,10 @@
 
                     case "d":
                         engine.DivisionGame("Division game");
+                        break;
+
+                    case "r":
+                        engine.RandomGame("Random game");
                         break;
 
                     case "q":   
@@ -124,15 +129,15 @@
                     break;
             }
 
-            if(emptyNumbers == false)
+            if(emptyNumbers == true)
             {
-                return numbers;
+              Console.WriteLine("Select one of the options above. Press any key to continue.");
+              Console.ReadKey();
+  
+              numbers = LevelMenu(numOfQuestions, out difficulty);
             }
 
-            else
-            {
-                return null;
-            }
+            return numbers;
         }
     }
 }

@@ -10,6 +10,10 @@
 
         internal string Difficulty { get; set; }
 
+        internal TimeSpan TimeElapesd { get; set; }
+
+        internal int NumOfQuestions { get; set; }
+
     }
 
     internal enum GameType
@@ -17,6 +21,7 @@
         Addition,
         Subtraction,
         Multiplication,
-        Division
+        Division,
+        RandomGame
     }
 }
